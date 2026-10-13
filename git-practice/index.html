@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Git Practice Lab</title>
+  <meta name="description" content="Practice real git commands in a safe, simulated terminal — no installation needed.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e8590c'/%3E%3Ccircle cx='10' cy='9' r='3' fill='white'/%3E%3Ccircle cx='10' cy='23' r='3' fill='white'/%3E%3Ccircle cx='22' cy='14' r='3' fill='white'/%3E%3Cpath d='M10 12v8M22 17c0 4-12 2-12 6' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div>
+        <h1>Git Practice Lab</h1>
+        <p class="tagline">Learn git by typing real commands — nothing can break.</p>
+      </div>
+    </div>
+    <nav class="modes" aria-label="Mode">
+      <button class="mode-btn" data-mode="lesson" type="button">Lessons</button>
+      <button class="mode-btn" data-mode="free" type="button">Free play</button>
+    </nav>
+    <button id="reset-btn" class="ghost-btn" type="button" title="Start this lesson / sandbox again">↺ Restart</button>
+  </header>
+
+  <main class="layout">
+    <aside class="panel guide" id="guide" aria-label="Lesson"></aside>
+
+    <section class="terminal" aria-label="Terminal">
+      <div class="term-bar">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="term-title" id="term-title">student@git-lab: ~</span>
+      </div>
+      <div class="term-body" id="term-body" tabindex="-1">
+        <div id="term-out" role="log" aria-live="polite"></div>
+        <form class="term-input" id="term-form" autocomplete="off">
+          <label class="prompt" id="prompt" for="term-in"></label>
+          <input id="term-in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" aria-label="Command">
+        </form>
+      </div>
+    </section>
+
+    <aside class="panel state" aria-label="Repository state">
+      <section class="card" id="files-card">
+        <h2>Working directory <span class="sub" id="cwd-label"></span></h2>
+        <div id="files"></div>
+      </section>
+      <section class="card">
+        <h2>Staging area <span class="sub">(index)</span></h2>
+        <div id="staging"></div>
+      </section>
+      <section class="card">
+        <h2>Local repository <span class="sub" id="local-sub"></span></h2>
+        <div id="local-graph"></div>
+      </section>
+      <section class="card remote-card">
+        <h2>Remote <span class="sub" id="remote-sub"></span></h2>
+        <div id="remote-graph"></div>
+        <button id="teammate-btn" class="accent-btn" type="button" hidden>👥 Teammate pushes a commit</button>
+      </section>
+    </aside>
+  </main>
+
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form method="dialog" class="editor-form">
+      <header>
+        <h2 id="editor-title">Edit file</h2>
+        <span class="sub">Ctrl+S to save · Esc to cancel</span>
+      </header>
+      <textarea id="editor-text" spellcheck="false"></textarea>
+      <footer>
+        <button value="cancel" class="ghost-btn" type="submit">Cancel</button>
+        <button value="save" class="accent-btn" type="submit" id="editor-save">Save</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script src="js/git-engine.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/lessons.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
